@@ -8,8 +8,8 @@ const Main = () => {
     const movie = movies[Math.floor(Math.random() * movies.length)]
 
     useEffect(() => {
-        axios.get(requests.requestPopular).then((response) => {
-            setMovies(response.data.results)
+        axios.get(requests).then((response) => {
+            setMovies(response.data)
             console.log(response);
         })
     }, [])
@@ -19,7 +19,6 @@ const Main = () => {
     }
 
     console.log(movie);
-
     return (
         <div className='w-full h-[550px] text-white'>
             <div className='w-full h-full'>
@@ -36,7 +35,6 @@ const Main = () => {
                     <p className='text-gray-300 text-sm italic'>Release date: {movie?.release_date}</p>
                     <p className='w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[40%] text-gray-300'>{truncateString(movie?.overview, 150)}</p>
                 </div>
-
             </div>
 
         </div>
