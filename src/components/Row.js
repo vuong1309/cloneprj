@@ -10,7 +10,6 @@ const Row = ({ title, fetchURL, rowID }) => {
     useEffect(() => {
         axios.get(requests).then((response) => {
             setMovies(response.data);
-            console.log(response.data);
         });
     }, [fetchURL]);
 
@@ -36,7 +35,7 @@ const Row = ({ title, fetchURL, rowID }) => {
                     id={'slider' + rowID}
                     className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'
                 >
-                    {movies.map((item, id) => (
+                    {movies.filter(item => item.type === title).map((item, id) => (
                         <Movie key={id} item={item} />
                     ))}
                 </div>
